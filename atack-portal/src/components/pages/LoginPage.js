@@ -19,7 +19,9 @@ export default function SignInPage() {
                     <input type="password" name="password" required />
                 </p>
                 <p>
-                    <button id="sub_btn" type="submit">Login</button>
+                    <button id="sub_btn" type="submit">Login as Student</button>
+                    <br/>
+                    <button id="sub_btn" type="submit">Login as Admin</button>
                 </p>
             </form>
             <footer>

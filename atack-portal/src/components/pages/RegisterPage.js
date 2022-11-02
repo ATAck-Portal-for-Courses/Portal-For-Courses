@@ -23,6 +23,10 @@ export default function SignUpPage() {
                     <input type="password" name="password" requiredc />
                 </p>
                 <p>
+                    <label>Admin Code (0 for student)</label><br/>
+                    <input type="text" name="code" required />
+                </p>
+                <p>
                     <input type="checkbox" name="checkbox" id="checkbox" required /> <span>I agree all statements in <a href="https://google.com" target="_blank" rel="noopener noreferrer">terms of service</a></span>.
                 </p>
                 <p>
