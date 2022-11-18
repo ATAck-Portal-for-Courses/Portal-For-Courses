@@ -141,3 +141,17 @@ form span {
 .home-page-title {
     color: #222
 }
+
+/*** Footer***/
+.footer{
+    
+    background: #222;
+    font-size: .8rem;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    padding: 1rem;
+    margin: 0;
+    width: 100%;
+    opacity: .75
+}

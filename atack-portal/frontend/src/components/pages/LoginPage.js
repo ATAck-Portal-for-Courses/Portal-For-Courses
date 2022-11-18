@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 
 import '../../App.css'
 
-export default function SignInPage() {
-    return (
+
+const LogInPage = ()=>{
+    return(
         <div className="text-center m-5-auto">
             <h2>Log-In to continue</h2>
             <form action="/home">
@@ -31,3 +32,6 @@ export default function SignInPage() {
         </div>
     )
 }
+
+
+export default LogInPage;
