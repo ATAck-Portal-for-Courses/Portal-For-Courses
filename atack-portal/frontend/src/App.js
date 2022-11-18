@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
 import LandingPage from './components/pages/LandingPage'
 import LogInPage from './components/pages/LoginPage'
@@ -15,13 +15,13 @@ export default function App() {
         <div className='App'>
         <Router>
             <div>
-                <Switch>
-                    <Route exact path="/" component={ LandingPage  } />
-                    <Route path="/login" component={ LogInPage   } />
-                    <Route path="/register" component={ RegisterPage  } />
-                    <Route path="/forget-password" component={ ForgetPasswordPage  } />
-                    <Route path="/home" component={ HomePage  } />
-                </Switch>
+                <Routes>
+                    <Route path="/" element={ <LandingPage /> } />
+                    <Route path="/login" element={ <LogInPage />  } />
+                    <Route path="/register" element={ <RegisterPage /> } />
+                    <Route path="/forget-password" element={ <ForgetPasswordPage /> } />
+                    <Route path="/home" element={ <HomePage /> } />
+                </Routes>
                 <Footer />
             </div>
         </Router>
