@@ -11,10 +11,14 @@ app.use(cors());
 
 app.post('/registerStudent', async (req, resp) => {
     let obj = req;
+    // const password = obj.body.password;
     // delete obj.body.password;
+    // const email = obj.body.email
+    const username = obj.body.username;
     // delete obj.body.email;
 
-    let auth = await Student.findOne(obj.body);
+
+    let auth = await Student.findOne({username:username});
 
     if (auth) {
         // ("Student already registered");
@@ -22,6 +26,7 @@ app.post('/registerStudent', async (req, resp) => {
     }
     else {
         console.warn(req.body)
+
         let student = new Student(req.body);
         let result = await student.save();
         result = result.toObject();
