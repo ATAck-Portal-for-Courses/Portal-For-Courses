@@ -1,18 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import HomePage from './HomePage'
 
 const AdminHome= () => {
     return (
         <>
             <div>
-                
+                hemlo
             </div>
-            <div className="text-center">
-                <h1 className="main-title home-page-title">Welcome to ATAck portal for courses</h1>
-                <Link to="/">
-                    <button className="primary-button">Log out</button>
-                </Link>
-            </div>
+            <HomePage/>
         </>
     )
 }
