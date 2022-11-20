@@ -15,6 +15,7 @@ import './App.css'
 
 export default function App() {
     return (
+        <>
         <div className='App'>
         <Router>
             <div>
@@ -27,9 +28,10 @@ export default function App() {
                     <Route path="/admin" element={ <AdminHome /> } />
                     <Route path="/student" element={ <StudentHome /> }/>
                 </Routes>
-                <Footer />
             </div>
         </Router>
+        <Footer />
         </div>
+        </>
     )
 }
