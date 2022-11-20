@@ -148,10 +148,8 @@ form span {
     background: #222;
     font-size: .8rem;
     color: #fff;
-    position:relative;
-    left:0;
-    bottom:0;
-    right:0;
+    position: fixed;
+    bottom: 0; 
     padding: 1rem;
     margin: 0;
     width: 100%;

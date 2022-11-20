@@ -29,6 +29,7 @@ export default function App() {
                     <Route path="/student" element={ <StudentHome /> }/>
                 </Routes>
             </div>
+            {/* <Footer /> */}
         </Router>
         <Footer />
         </div>

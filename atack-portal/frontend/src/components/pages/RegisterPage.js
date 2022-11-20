@@ -32,9 +32,10 @@ const SignUpPage = ()=> {
             result = await result.json();
             delete result.password;
             console.warn(result);
-            localStorage.setItem("student",JSON.stringify(result));
+            // localStorage.setItem("student",JSON.stringify(result));
             if(result)
             {
+                localStorage.setItem("student",JSON.stringify(result));
                 navigate('/home');
             }
             else{alert("Student already registered")}
@@ -52,9 +53,9 @@ const SignUpPage = ()=> {
             result = await result.json();
             delete result.password;
             console.warn(result);
-            localStorage.setItem("teacher",JSON.stringify(result));
             if(result)
             {
+                localStorage.setItem("teacher",JSON.stringify(result));
                 navigate('/home');
             }
             else{alert("Teacher already registered")}
