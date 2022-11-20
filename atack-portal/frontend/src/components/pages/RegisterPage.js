@@ -14,8 +14,11 @@ const SignUpPage = ()=> {
     const navigate = useNavigate();
 
     const collectData = async ()=>{
-        console.warn(username, email, password, code);
+
+        console.log(username,email,password,code);
+    
         let c = parseInt(code);
+        
 
         if(c===0){
             let asgId="0";
@@ -27,15 +30,16 @@ const SignUpPage = ()=> {
                 }
             });
             result = await result.json();
+            delete result.password;
             console.warn(result);
-            // localStorage.setItem("student",JSON.stringify(result));
+            localStorage.setItem("student",JSON.stringify(result));
             if(result)
             {
                 navigate('/home');
             }
             else{alert("Student already registered")}
         }
-    }    
+    }
 
     return (
         <div className="text-center m-5-auto">
@@ -44,23 +48,23 @@ const SignUpPage = ()=> {
             <form>
                 <p>
                     <label>Username</label><br/>
-                    <input type="text" required placeholder='Enter your UID'
-                      value={username} onChange={(e)=>setName(e.target.value)} />
+                    <input type="text" name = 'username' required placeholder='Enter your UID'
+                     value={username} onChange={(e)=> setName(e.target.value)} />
                 </p>
                 <p>
                     <label>Email address</label><br/>
-                    <input type="email" required 
-                     value={email} onChange={(e)=>setEmail(e.target.value)} />
+                    <input type="email" name="email" required 
+                    value={email} onChange={(e)=> setEmail(e.target.value)} />
                 </p>
                 <p>
                     <label>Password</label><br/>
-                    <input type="password" required 
-                     value={password} onChange={(e)=>setPass(e.target.value)} />
+                    <input type="password" name="password" required 
+                     value={password} onChange={(e)=> setPass(e.target.value)} />
                 </p>
                 <p>
                     <label>Admin Code (0 for student)</label><br/>
-                    <input type="text" required 
-                     value={code} onChange={(e)=>setCode(e.target.value)} />
+                    <input type="text" name="code" required 
+                     value={code} onChange={(e)=> setCode(e.target.value)} />
                 </p>
                 <p>
                     <input type="checkbox" id="checkbox" required /> <span>I agree all statements in <a href="https://google.com" target="_blank" rel="noopener noreferrer">terms of service</a></span>.
