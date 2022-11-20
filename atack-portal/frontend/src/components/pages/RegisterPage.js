@@ -21,10 +21,10 @@ const SignUpPage = ()=> {
         
 
         if(c===0){
-            let asgId="0";
+            let crsId="0";
             let result = await fetch("http://localhost:7000/registerStudent",{
                 method:'post',
-                body:JSON.stringify({username,email,password,asgId}),
+                body:JSON.stringify({username,email,password,crsId}),
                 headers:{
                     'Content-Type':'application/json'
                 }
@@ -38,6 +38,27 @@ const SignUpPage = ()=> {
                 navigate('/home');
             }
             else{alert("Student already registered")}
+        }
+        else if(c===1879){
+            let crsId=0;
+
+            let result = await fetch("http://localhost:7000/registerTeacher",{
+                method:'post',
+                body:JSON.stringify({username,email,password,crsId}),
+                headers:{
+                    'Content-Type':'application/json'
+                }
+            });
+            result = await result.json();
+            delete result.password;
+            console.warn(result);
+            localStorage.setItem("teacher",JSON.stringify(result));
+            if(result)
+            {
+                navigate('/home');
+            }
+            else{alert("Teacher already registered")}
+
         }
     }
 

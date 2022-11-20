@@ -5,18 +5,18 @@ const HomePage= () => {
     
     const navigate = useNavigate();
 
+
+    const authStudent=localStorage.getItem("student");
+    const authTeacher=localStorage.getItem("teacher");
     useEffect(()=>{
-        const authStudent=localStorage.getItem("student");
-        const authTeacher=localStorage.getItem("teacher");
+        // const authStudent=localStorage.getItem("student");
+        // const authTeacher=localStorage.getItem("teacher");
 
         if(!(authStudent || authTeacher)){
             alert("Please Register First")
             navigate('/register');
         }
     })
-
-    // const authStudent=localStorage.getItem("student");
-    // const authTeacher=localStorage.getItem("teacher");
 
     
 
