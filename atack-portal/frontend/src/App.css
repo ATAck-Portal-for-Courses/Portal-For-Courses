@@ -157,3 +157,45 @@ form span {
     width: 100%;
     opacity: .75
 }
+
+.wrapper{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(12rem, 16rem));
+    gap:2rem;
+    justify-content: center;
+}
+
+.card{
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgb(150, 150, 150);
+    border-radius: 2rem;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: transform 200ms ease-in;
+}
+
+.card_img{
+    height:12rem;
+    width:100%;
+    object-fit: cover;
+
+}
+.card_title{
+    padding:1rem;
+}
+.card_desc{
+    padding: 0 1rem;
+}
+.card_btn{
+    padding: 1rem;
+    font-family: inherit;
+    font-weight: bold;
+    margin: 1rem;
+    border:2px solid rgb(0, 255, 230);
+    background: transparent;
+    color:rgb(0, 255, 230);
+    border-radius: 2rem;
+    transition:color 200ms ease-in;
+}
