@@ -27,9 +27,12 @@ export default function App() {
                     <Route path="/admin" element={ <AdminHome /> } />
                     <Route path="/student" element={ <StudentHome /> }/>
                 </Routes>
-                <Footer />
+                {/* <Footer /> */}
             </div>
+            {/* <Footer /> */}
         </Router>
+        <Footer />
         </div>
+        // <Footer />
     )
 }

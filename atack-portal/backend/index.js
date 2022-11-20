@@ -54,4 +54,17 @@ app.post('/registerTeacher', async (req,resp)=>{
     }
 })
 
+app.post('/loginStudent', async (req,resp)=>{
+
+    let student = await Student.findOne(req.body).select("-password");
+
+    resp.send(student? student:false);
+    
+})
+
+app.post('/loginTeacher', async (req,resp)=>{
+    let teacher = await Teacher.findOne(req.body).select("-password");
+    resp.send(teacher? teacher:false);
+})
+
 app.listen(7000);
