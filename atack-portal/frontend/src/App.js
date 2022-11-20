@@ -6,6 +6,8 @@ import LogInPage from './components/pages/LoginPage'
 import RegisterPage from './components/pages/RegisterPage'
 import ForgetPasswordPage from './components/pages/ForgetPasswordPage'
 import HomePage from './components/pages/HomePage'
+import AdminHome from './components/pages/AdminHome'
+import StudentHome from './components/pages/StudentHome'
 import Footer from './components/pages/Footer'
 
 import './App.css'
@@ -21,6 +23,8 @@ export default function App() {
                     <Route path="/register" element={ <RegisterPage /> } />
                     <Route path="/forget-password" element={ <ForgetPasswordPage /> } />
                     <Route path="/home" element={ <HomePage /> } />
+                    <Route path="/admin" element={ <AdminHome /> } />
+                    <Route path="/student" element={ <StudentHome /> }/>
                 </Routes>
                 <Footer />
             </div>
