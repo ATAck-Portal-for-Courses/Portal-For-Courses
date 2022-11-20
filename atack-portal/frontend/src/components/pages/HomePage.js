@@ -13,8 +13,8 @@ const HomePage= () => {
         // const authTeacher=localStorage.getItem("teacher");
 
         if(!(authStudent || authTeacher)){
-            alert("Please Register First")
             navigate('/register');
+            //alert("Please Register First")
         }
     })
 
