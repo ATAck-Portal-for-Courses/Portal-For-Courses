@@ -84,4 +84,15 @@ app.post('/addCourse', async (req,resp)=>{
     }
 })
 
+app.get('/getCourses', async (req, resp)=>{
+    const uid = req.query.uid;
+    let courses = await Course.find({uid:uid});
+    
+    if(courses.length>0)
+    {
+        resp.send(courses);
+    }
+    else resp.send({result:"failed"});
+})
+
 app.listen(7000);
