@@ -3,6 +3,7 @@ const cors = require("cors");
 require('./db/config');
 const Student = require('./db/Student');
 const Teacher = require('./db/Teacher');
+const Course = require('./db/Course');
 
 
 const app = express();
@@ -65,6 +66,33 @@ app.post('/loginStudent', async (req,resp)=>{
 app.post('/loginTeacher', async (req,resp)=>{
     let teacher = await Teacher.findOne(req.body).select("-password");
     resp.send(teacher? teacher:false);
+})
+
+
+app.post('/addCourse', async (req,resp)=>{
+    const auth = await Course.findOne(req.body);
+    
+    if(auth){
+        // alert("Course has already been added by you.");
+        resp.send(false);
+    }
+    else{
+        let course = new Course(req.body);
+        let result = await course.save();
+        result = result.toObject();
+        resp.send(result);
+    }
+})
+
+app.get('/getCourses', async (req, resp)=>{
+    const uid = req.query.uid;
+    let courses = await Course.find({uid:uid});
+    
+    if(courses.length>0)
+    {
+        resp.send(courses);
+    }
+    else resp.send({result:"failed"});
 })
 
 app.listen(7000);
