@@ -21,15 +21,20 @@ function Card(props){
 const AdminHome= () => {
     return (
         <>
-            <div className="header">Home</div>
+            <HomePage/>
+            <br/>
             <div className='wrapper'>
                 <Card
                 img="https://images.unsplash.com/photo-1633493702341-4d04841df53b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGh5c2ljc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60"
                 card_title="PH108"
                 card_desc="Physics course offered in the spring semester for UG freshies"
                 />
+                <Card
+                img="https://images.unsplash.com/photo-1633493702341-4d04841df53b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8cGh5c2ljc3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=1000&q=60"
+                card_title="PH108"
+                card_desc="Physics course offered in the spring semester for UG freshies"
+                />
             </div>
-            <HomePage/>
         </>
     )
 }

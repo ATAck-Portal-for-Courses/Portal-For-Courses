@@ -4,7 +4,6 @@ const studentSchema = new mongoose.Schema({
     username: String,
     email: String,
     password: String,
-    crsId: String
 });
 
 module.exports = mongoose.model('students',studentSchema);
