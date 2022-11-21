@@ -31,7 +31,7 @@ const LogInPage = ()=>{
         console.warn(result);
         if(result){
             localStorage.setItem('student',JSON.stringify(result));
-            navigate('/home');
+            navigate('/student');
         }
         else alert('Enter correct details!');
     }
@@ -49,7 +49,7 @@ const LogInPage = ()=>{
         console.warn(result);
         if(result){
             localStorage.setItem('teacher',JSON.stringify(result));
-            navigate('/home');
+            navigate('/admin');
         }
         else alert('Enter correct details!');
     }
