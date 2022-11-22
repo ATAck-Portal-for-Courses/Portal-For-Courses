@@ -12,6 +12,7 @@ import Footer from './components/pages/Footer'
 import SignUpPage from './components/pages/RegisterPage'
 import CoursePage from './components/pages/CoursePage'
 import CourseCreate from './components/pages/CourseCreate'
+import AddAssignment from './components/pages/AddAssignment'
 
 import './App.css'
 
@@ -30,7 +31,8 @@ export default function App() {
                     <Route exact path="/admin" element={ <AdminHome /> } />
                     <Route exact path="/student" element={ <StudentHome /> }/>
                     <Route exact path="/:courseId" element={ <CoursePage /> }/>
-                    <Route path="/course-create" element={ <CourseCreate/> } />
+                    <Route exact path="/course-create" element={ <CourseCreate/> } />
+                    <Route exact path="/add-assignment" element={ <AddAssignment/> } />
                 </Routes>
             </div>
         </Router>
