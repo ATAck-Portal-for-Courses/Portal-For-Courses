@@ -14,7 +14,7 @@ export default function AdminNav() {
         </div>
         <div>
             <NavLink to='/course-create'><button>Create New Course</button></NavLink>
-            <NavLink to='/'><button onclick={Logout}>Logout</button></NavLink>
+            <NavLink to='/'><button onClick={Logout}>Logout</button></NavLink>
             
         </div>
     </nav>

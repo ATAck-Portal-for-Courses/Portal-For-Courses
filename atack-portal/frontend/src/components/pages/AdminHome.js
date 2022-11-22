@@ -9,9 +9,9 @@ function Card(props){
             <div className="card_body">
                 {/* <img className='card_img'
                 src={props.img} /> */}
-                <h2 className="card_title">{props.name}</h2>
+                <h2 className="card_title">{props.courseName}</h2>
                 <p className="card_description">
-                    {props.code}
+                    {props.courseCode}
                 </p>
                 <a href={`/${props._id}`}><button className="card_btn" >View Course</button> </a>
             </div>
@@ -50,7 +50,7 @@ const AdminHome= () => {
         }
 
         getCourses();
-    })
+    }, [])
 
 
     const renderCards =  courses.map((course, index)=>{

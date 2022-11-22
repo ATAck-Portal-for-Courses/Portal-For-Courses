@@ -10,9 +10,12 @@ const CourseCreate = ()=> {
 
     const navigate = useNavigate();
 
-    const uid = localStorage.getItem("teacher").username;
+    // const uid = localStorage.getItem("teacher").username;
+    // console.log(uid);
 
     const collectData = async ()=>{
+        const uid = JSON.parse(localStorage.getItem("teacher")).username;
+        console.log(uid);
         console.log(courseName,courseCode,password);
         let result = await fetch("http://localhost:7000/addCourse",{
         method:'post',
@@ -27,7 +30,6 @@ const CourseCreate = ()=> {
         // localStorage.setItem("student",JSON.stringify(result));
         if(result)
         {
-            localStorage.setItem("student",JSON.stringify(result));
             navigate('/admin');
         }
         else{alert("Course already exists.")}
