@@ -10,6 +10,7 @@ import AdminHome from './components/pages/AdminHome'
 import StudentHome from './components/pages/StudentHome'
 import Footer from './components/pages/Footer'
 import SignUpPage from './components/pages/RegisterPage'
+import CourseCreate from './components/pages/CourseCreate'
 
 import './App.css'
 
@@ -27,6 +28,7 @@ export default function App() {
                     <Route path="/home" element={ <HomePage /> } />
                     <Route path="/admin" element={ <AdminHome /> } />
                     <Route path="/student" element={ <StudentHome /> }/>
+                    <Route path="/course-create" element={ <CourseCreate/> } />
                 </Routes>
             </div>
         </Router>

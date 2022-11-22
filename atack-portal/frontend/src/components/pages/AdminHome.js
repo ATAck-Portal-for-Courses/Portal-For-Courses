@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from 'react'
+import AdminNav from '../navbar/AdminNav';
 import HomePage from './HomePage'
 
 function Card(props){
@@ -37,7 +38,7 @@ const AdminHome= () => {
             
             console.warn(typeof(result[0]));
     
-            if(result!=false)
+            if(result!==false)
             {
                 setCourses(result);
                 
@@ -46,7 +47,7 @@ const AdminHome= () => {
         }
 
         getCourses();
-    },[])
+    })
 
 
     const renderCards =  courses.map((course, index)=>{
@@ -62,7 +63,8 @@ const AdminHome= () => {
     
     
     return (
-        <>
+        <div>
+            <AdminNav/>
             <HomePage/>
             <br/>
             <div className='wrapper' >
@@ -76,7 +78,7 @@ const AdminHome= () => {
                 </div>
             }
             </div>
-        </>
+        </div>
     )
 }
 
