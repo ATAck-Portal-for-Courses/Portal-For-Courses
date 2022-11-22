@@ -92,7 +92,16 @@ app.get('/getCourses', async (req, resp)=>{
     {
         resp.send(courses);
     }
-    else resp.send({result:"failed"});
+    else resp.send(false);
 })
+
+app.get('/getCourseById', async (req,resp)=>{
+    const id = req.query._id;
+    let course = await Course.findOne({_id:id});
+
+    if(course!=false) resp.send(course);
+    else resp.send(false);
+})
+
 
 app.listen(7000);

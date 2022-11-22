@@ -13,7 +13,7 @@ function Card(props){
                 <p className="card_description">
                     {props.code}
                 </p>
-                <button className="card_btn">View Course</button>
+                <a href={`/${props._id}`}><button className="card_btn" >View Course</button> </a>
             </div>
         </div>
     )
@@ -41,9 +41,12 @@ const AdminHome= () => {
             if(result!==false)
             {
                 setCourses(result);
-                
+                // console.warn("hmm")
             }
-            else return false;
+            else {
+                // console.warn("nice")   
+                return false;
+            }
         }
 
         getCourses();
