@@ -2,12 +2,12 @@ import React from "react";
 
 const Stuform=()=>{
     return(
-        <div>
-            <h2>Register For Courses</h2>
+        <div className="text-center m-5-auto">
+            <h1>Register For Courses</h1>
                 <form>
                     <p>
                         <label>Course Code</label><br/>
-                        <input type="text" name = 'ccode' required placeholder='Enter The Course Code'/>
+                        <input type="text" name = 'code' required placeholder='Enter The Course Code'/>
                     </p>
                     <p>
                         <label>Password</label><br/>
