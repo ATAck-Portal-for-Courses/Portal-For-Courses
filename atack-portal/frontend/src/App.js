@@ -10,6 +10,8 @@ import AdminHome from './components/pages/AdminHome'
 import StudentHome from './components/pages/StudentHome'
 import Footer from './components/pages/Footer'
 import SignUpPage from './components/pages/RegisterPage'
+import CoursePage from './components/pages/CoursePage'
+import CourseCreate from './components/pages/CourseCreate'
 
 import './App.css'
 
@@ -20,13 +22,15 @@ export default function App() {
         <Router>
             <div>
                 <Routes>
-                    <Route path="/" element={ <LandingPage /> } />
-                    <Route path="/login" element={ <LogInPage />  } />
-                    <Route path="/register" element={ <SignUpPage /> } />
-                    <Route path="/forget-password" element={ <ForgetPasswordPage /> } />
-                    <Route path="/home" element={ <HomePage /> } />
-                    <Route path="/admin" element={ <AdminHome /> } />
-                    <Route path="/student" element={ <StudentHome /> }/>
+                    <Route exact path="/" element={ <LandingPage /> } />
+                    <Route exact path="/login" element={ <LogInPage />  } />
+                    <Route exact path="/register" element={ <SignUpPage /> } />
+                    <Route exact path="/forget-password" element={ <ForgetPasswordPage /> } />
+                    <Route exact path="/home" element={ <HomePage /> } />
+                    <Route exact path="/admin" element={ <AdminHome /> } />
+                    <Route exact path="/student" element={ <StudentHome /> }/>
+                    <Route exact path="/:courseId" element={ <CoursePage /> }/>
+                    <Route path="/course-create" element={ <CourseCreate/> } />
                 </Routes>
             </div>
         </Router>
