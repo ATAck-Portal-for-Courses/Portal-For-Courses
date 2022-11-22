@@ -4,6 +4,7 @@ require('./db/config');
 const Student = require('./db/Student');
 const Teacher = require('./db/Teacher');
 const Course = require('./db/Course');
+const Assignment = require('./db/Assignment');
 
 
 const app = express();
@@ -130,5 +131,20 @@ app.post('/registerForCourse', async (req, resp) => {
     }
 })
 
+
+app.post('/addAssignment', async (req, resp) => {
+    const auth = await Assignment.findOne(req.body);
+
+    if (auth) {
+        // alert("Assignment has already been added by you.");
+        resp.send(false);
+    }
+    else {
+        let assignment = new Assignment(req.body);
+        let result = await assignment.save();
+        result = result.toObject();
+        resp.send(result);
+    }
+})
 
 app.listen(7000);
