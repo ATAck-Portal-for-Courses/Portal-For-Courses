@@ -10,6 +10,7 @@ import AdminHome from './components/pages/AdminHome'
 import StudentHome from './components/pages/StudentHome'
 import Footer from './components/pages/Footer'
 import SignUpPage from './components/pages/RegisterPage'
+import Stuform from './components/pages/studentform'
 import CoursePage from './components/pages/CoursePage'
 
 import './App.css'
@@ -29,6 +30,7 @@ export default function App() {
                     <Route exact path="/admin" element={ <AdminHome /> } />
                     <Route exact path="/student" element={ <StudentHome /> }/>
                     <Route exact path="/:courseId" element={ <CoursePage /> }/>
+                    <Route path="/stu-form" element={ <Stuform />}/>
                 </Routes>
             </div>
             {/* <Footer /> */}
