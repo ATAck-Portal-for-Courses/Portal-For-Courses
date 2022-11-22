@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const CourseCreate = ()=> {
 
@@ -7,8 +8,29 @@ const CourseCreate = ()=> {
     const [courseCode, setCourseCode] = useState("");
     const [password, setPassword] = useState("");
 
+    const navigate = useNavigate();
+
+    const uid = localStorage.getItem("teacher").username;
+
     const collectData = async ()=>{
         console.log(courseName,courseCode,password);
+        let result = await fetch("http://localhost:7000/addCourse",{
+        method:'post',
+        body:JSON.stringify({courseName,courseCode,password,uid}),
+        headers:{
+            'Content-Type':'application/json'
+        }
+        });
+        result = await result.json();
+        delete result.password;
+        console.warn(result);
+        // localStorage.setItem("student",JSON.stringify(result));
+        if(result)
+        {
+            localStorage.setItem("student",JSON.stringify(result));
+            navigate('/admin');
+        }
+        else{alert("Course already exists.")}
     }
 
     return (
