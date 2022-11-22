@@ -202,5 +202,14 @@ form span {
 
 .nav li {
     display: inline-block;
-    padding: 10px;
-  }
+    padding: 5px;
+    margin: 0px;
+    background-color: lemonchiffon;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    background-size: cover;
+    font-weight: 800;
+
+}
+

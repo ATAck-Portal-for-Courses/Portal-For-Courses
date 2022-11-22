@@ -11,7 +11,7 @@ const Stuform=()=>{
                     </p>
                     <p>
                         <label>Password</label><br/>
-                        <input type="password" name="password" required />
+                        <input type="password" name="password" placeholder="Password" required />
                     </p>
                     <p>
                         <button id="sub_btn" type="button" >Register</button>
