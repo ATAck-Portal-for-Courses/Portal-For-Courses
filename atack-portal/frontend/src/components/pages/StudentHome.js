@@ -1,12 +1,19 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import StudentNav from './StudentNav'
 
 function StudentHome() {
     return (
       <div className="student">
+            {/* <BrowserRouter>
             <StudentNav />
-            <h1>Bhar na bsdk</h1>     
+            <Routes>
+                <Route path="/stuform" element={<stuform />} />
+            </Routes>
+            </BrowserRouter> */}
+            <StudentNav />
       </div>
+
+      
     );
   }
   
