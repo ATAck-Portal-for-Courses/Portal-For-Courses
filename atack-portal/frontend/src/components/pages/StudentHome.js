@@ -38,7 +38,7 @@ function StudentHome() {
 
         
         
-        console.warn(typeof(result[0]));
+        // console.warn(typeof(result[0]));
 
         if(result!=false)
         {
