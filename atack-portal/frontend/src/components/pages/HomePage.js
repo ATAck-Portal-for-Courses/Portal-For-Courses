@@ -28,9 +28,9 @@ const HomePage= () => {
     return (
         <div className="text-center">
             <h1 className="main-title home-page-title">Welcome to ATAck portal for courses</h1>
-            <Link to="/">
+            {/* <Link to="/">
                 <button className="primary-button" onClick={Logout}>Log out</button>
-            </Link>
+            </Link> */}
         </div>
     )
 }

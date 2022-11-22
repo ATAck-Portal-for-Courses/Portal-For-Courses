@@ -12,6 +12,7 @@ import Footer from './components/pages/Footer'
 import SignUpPage from './components/pages/RegisterPage'
 import Stuform from './components/pages/studentform'
 import CoursePage from './components/pages/CoursePage'
+import CourseCreate from './components/pages/CourseCreate'
 
 import './App.css'
 
@@ -31,9 +32,9 @@ export default function App() {
                     <Route exact path="/student" element={ <StudentHome /> }/>
                     <Route exact path="/:courseId" element={ <CoursePage /> }/>
                     <Route path="/stu-form" element={ <Stuform />}/>
+                    <Route path="/course-create" element={ <CourseCreate/> } />
                 </Routes>
             </div>
-            {/* <Footer /> */}
         </Router>
         <Footer />
         </div>
