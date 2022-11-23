@@ -15,7 +15,8 @@ const LogInPage = ()=>{
     const authTeacher =localStorage.getItem("teacher");
 
     useEffect(()=>{
-     if(authStudent || authTeacher) navigate('/home');
+     if(authStudent) navigate('/student');
+     else if(authTeacher) navigate('/admin');
     })
 
     const handleLoginStudent = async ()=>{

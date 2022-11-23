@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from 'react'
+import AdminNav from '../navbar/AdminNav';
 import HomePage from './HomePage'
 
 function Card(props){
@@ -8,11 +9,11 @@ function Card(props){
             <div className="card_body">
                 {/* <img className='card_img'
                 src={props.img} /> */}
-                <h2 className="card_title">{props.name}</h2>
+                <h2 className="card_title">{props.courseName}</h2>
                 <p className="card_description">
-                    {props.code}
+                    {props.courseCode}
                 </p>
-                <button className="card_btn">View Course</button>
+                <a href={`/${props._id}`}><button className="card_btn" >View Course</button> </a>
             </div>
         </div>
     )
@@ -37,16 +38,19 @@ const AdminHome= () => {
             
             console.warn(typeof(result[0]));
     
-            if(result!=false)
+            if(result!==false)
             {
                 setCourses(result);
-                
+                // console.warn("hmm")
             }
-            else return false;
+            else {
+                // console.warn("nice")   
+                return false;
+            }
         }
 
         getCourses();
-    },[])
+    }, [])
 
 
     const renderCards =  courses.map((course, index)=>{
@@ -62,7 +66,8 @@ const AdminHome= () => {
     
     
     return (
-        <>
+        <div>
+            <AdminNav/>
             <HomePage/>
             <br/>
             <div className='wrapper' >
@@ -76,7 +81,7 @@ const AdminHome= () => {
                 </div>
             }
             </div>
-        </>
+        </div>
     )
 }
 
