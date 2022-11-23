@@ -22,6 +22,10 @@ const CoursePage = ()=>{
             }
             else return false;
 
+            let courseCode = course.courseCode;
+
+            
+
 
         }
         // console.warn(courseId);

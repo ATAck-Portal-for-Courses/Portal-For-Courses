@@ -4,6 +4,7 @@ require('./db/config');
 const Student = require('./db/Student');
 const Teacher = require('./db/Teacher');
 const Course = require('./db/Course');
+const Assignment = require('./db/Assignment');
 
 
 const app = express();
@@ -128,6 +129,19 @@ app.post('/registerForCourse', async (req, resp) => {
         
     }
     }
+})
+
+
+app.get('/getAssignments', async(req,resp)=>{
+    const courseCode = req.query.courseCode;
+    let assignment = await Assignment.find({courseCode:courseCode});
+
+    if(assignment.length>0)
+    {
+        resp.send(assignment);
+    }
+    else resp.send(false);
+
 })
 
 

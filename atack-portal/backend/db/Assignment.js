@@ -9,3 +9,5 @@ const assignmentSchema = new mongoose.Schema({
     dueDate:Date,
     file:Buffer
 })
+
+module.exports = mongoose.model("assignments",assignmentSchema);
