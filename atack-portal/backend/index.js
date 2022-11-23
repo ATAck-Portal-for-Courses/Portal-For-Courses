@@ -146,11 +146,15 @@ app.get('/getAssignments', async(req,resp)=>{
 
 
 app.post('/addAssignment', async (req, resp)=>{
-    
-    
-    let res = await asg.save();
-    res = res.toObject();
-    resp.send(res);
+    const auth = await Assignment.findOne(req.body);
+
+    if(auth) resp.send(false);
+    else{
+        let assignment = new Assignment(req.body);
+        let result = await assignment.save();
+        result = result.toObject();
+        resp.send(result);
+    }
 })
 
 

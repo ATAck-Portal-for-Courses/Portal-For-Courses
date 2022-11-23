@@ -14,7 +14,7 @@ const CoursePage = ()=>{
             let result = await fetch(req);
             result = await result.json();
 
-            console.warn(result);
+            // console.warn(result);
             
             if(result!=false)
             {
@@ -22,7 +22,9 @@ const CoursePage = ()=>{
             }
             else return false;
 
-            let courseCode = course.courseCode;
+            let courseCode = result.courseCode;
+            // console.log(result)
+            localStorage.setItem("courseCode", courseCode);
 
             
 
