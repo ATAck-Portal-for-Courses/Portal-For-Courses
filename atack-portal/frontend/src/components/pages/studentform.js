@@ -1,6 +1,8 @@
 import React from "react";
 
 const Stuform=()=>{
+
+
     return(
         <div>
             <h2>Register For Courses</h2>

@@ -95,4 +95,6 @@ app.get('/getCourses', async (req, resp)=>{
     else resp.send({result:"failed"});
 })
 
+
+
 app.listen(7000);
