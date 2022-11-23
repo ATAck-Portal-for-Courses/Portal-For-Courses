@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import CourseNav from "../navbar/CourseNav";
 
 const CoursePage = ()=>{
     
@@ -30,6 +30,7 @@ const CoursePage = ()=>{
     
     return(
         <div>
+            <CourseNav />
             <h1>{course.courseName}</h1>
         </div>
     )
