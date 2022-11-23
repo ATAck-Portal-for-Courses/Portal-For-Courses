@@ -145,4 +145,13 @@ app.get('/getAssignments', async(req,resp)=>{
 })
 
 
+app.post('/addAssignment', async (req, resp)=>{
+    
+    
+    let res = await asg.save();
+    res = res.toObject();
+    resp.send(res);
+})
+
+
 app.listen(7000);

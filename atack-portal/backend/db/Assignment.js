@@ -7,7 +7,9 @@ const assignmentSchema = new mongoose.Schema({
     description:String,
     startDate:Date,
     dueDate:Date,
-    file:Buffer
-})
+    file:String
+    }
+    
+)
 
 module.exports = mongoose.model("assignments",assignmentSchema);
