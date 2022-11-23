@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 export default function CourseNav() {
     const Logout=()=>{
@@ -19,7 +19,7 @@ export default function CourseNav() {
             <NavLink to='/'><button onClick={Logout}>Logout</button></NavLink>
             <div>
                 <input class="form-control" type="file" id="formFileMultiple" multiple />
-                <button onClick={AddAss}>Add Assignment</button>
+                <Link to='/add-assignment'> <button >Add Assignment</button></Link>
             </div>
         </div>
     </nav>
