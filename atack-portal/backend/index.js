@@ -129,9 +129,9 @@ app.get('/getCourseById', async (req, resp) => {
     const id = req.query._id;
     let course = await Course.findOne({ _id: id });
 
-    if (course != false)
+    if (course !== "false")
     {
-        course = await course.toObject();
+        // course = await course.toObject();
         resp.send(course)
     }
     else resp.send(false);
@@ -226,6 +226,7 @@ app.post('/addAssignment', upload.single('file'), async (req, resp)=>{
     }
     // resp.send(false)
 })
+
 
 
 app.listen(7000);

@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
-// import CourseNav from "../navbar/CourseNav";
+import CourseNav from "../navbar/CourseNav";
 
-const AssignsubPage = ()=>{
+const AssignmentPage = ()=>{
     
-    let assignmentid = window.location.pathname;
-    assignmentid = assignmentid.substring(1);
+    let assignmentId = window.location.pathname;
+    assignmentId = assignmentId.substring(1);
+    assignmentId = assignmentId.split('/')[1];
+    console.log(assignmentId, 2)
     
     const [assignment,setAssignment] = useState('');
 
     useEffect(()=>{
         const getAssignmentDetails= async ()=>{
-            let req = 'http://localhost:7000/getCourseById?_id=' + assignmentid;
+            let req = 'http://localhost:7000/getCourseById?_id=' + assignmentId;
             let result = await fetch(req);
             result = await result.json();
 
