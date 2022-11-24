@@ -1,14 +1,24 @@
 const express = require('express');
 const cors = require("cors");
 require('./db/config');
+// const bodyParser = require('body-parser')
+const multer = require('multer')
+// var storage = multer.memoryStorage();
+// const storage = multer.
+const upload = multer({dest:'assignments/'})
+
 const Student = require('./db/Student');
 const Teacher = require('./db/Teacher');
 const Course = require('./db/Course');
+const Assignment = require('./db/Assignment');
 
 
 const app = express();
-app.use(express.json());
 app.use(cors());
+// app.use(bodyParser.urlencoded({extended:false}));
+// app.use(bodyParser.json())
+app.use(express.json({limit:'20mb'}));
+app.use(express.urlencoded({limit:'20mb',extended:true,parameterLimit:20000}))
 
 
 app.post('/registerStudent', async (req, resp) => {
@@ -128,6 +138,46 @@ app.post('/registerForCourse', async (req, resp) => {
         
     }
     }
+})
+
+
+app.get('/getAssignments', async(req,resp)=>{
+    const courseCode = req.query.courseCode;
+    let assignment = await Assignment.find({courseCode:courseCode});
+
+    if(assignment.length>0)
+    {
+        resp.send(assignment);
+    }
+    else resp.send(false);
+
+})
+
+
+app.post('/addAssignment', upload.single('file'), async (req, resp)=>{
+    
+    // console.warn("HIi")
+    // let fileData = req.file.buffer
+    // let fileType = req.file.fileType;
+    // let courseCode = req.body.courseCode;
+    // let assignmentName = req.body.assignmentName;
+    // let description = req.body.description;
+    // let startDate = req.body.startDate;
+    // let dueDate = req.body.dueDate;
+    console.log(req.file)
+
+
+    
+    // const auth = await Assignment.findOne(req.body);
+
+    // if(auth) resp.send(false);
+    // else{
+    //     let assignment = new Assignment(req.body);
+    //     let result = await assignment.save();
+    //     result = result.toObject();
+    //     resp.send(result);
+    // }
+    resp.send(false)
 })
 
 

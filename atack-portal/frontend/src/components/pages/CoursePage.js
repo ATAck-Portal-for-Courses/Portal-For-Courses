@@ -14,13 +14,19 @@ const CoursePage = ()=>{
             let result = await fetch(req);
             result = await result.json();
 
-            console.warn(result);
+            // console.warn(result);
             
             if(result!=false)
             {
                 setCourse(result);
             }
             else return false;
+
+            let courseCode = result.courseCode;
+            // console.log(result)
+            localStorage.setItem("course", JSON.stringify(result));
+
+            
 
 
         }
