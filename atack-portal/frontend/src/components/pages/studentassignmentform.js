@@ -6,15 +6,18 @@ const AssignmentPage = ()=>{
     let assignmentId = window.location.pathname;
     assignmentId = assignmentId.substring(1);
     assignmentId = assignmentId.split('/')[1];
-    console.log(assignmentId, 2)
+    // console.log(assignmentId, 2)
     
     const [assignment,setAssignment] = useState('');
+    const [file, setFile]=useState('')
 
     useEffect(()=>{
         const getAssignmentDetails= async ()=>{
-            let req = 'http://localhost:7000/getCourseById?_id=' + assignmentId;
+            let req = 'http://localhost:7000/getAssignmentById?_id=' + assignmentId;
             let result = await fetch(req);
+            // console.log(result)
             result = await result.json();
+            // console.log(result)
 
             // console.warn(result);
             
@@ -51,7 +54,6 @@ const AssignmentPage = ()=>{
             <label class="mr-2">Upload Assignment:</label><br/>
             <input type="file" name="file" multiple onChange={(e)=>setFile(e.target.files[0])} />
             </div>
-
             <button type="button" class="btn btn-primary">Submit</button>
           </form>
           
@@ -61,4 +63,4 @@ const AssignmentPage = ()=>{
     )
 }
 
-export default AssignsubPage;
+export default AssignmentPage;
