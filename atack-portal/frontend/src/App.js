@@ -14,7 +14,7 @@ import Stuform from './components/pages/studentform'
 import CoursePage from './components/pages/CoursePage'
 import CourseCreate from './components/pages/CourseCreate'
 import AddAssignment from './components/pages/AddAssignment'
-import AssignsubPage from './components\pages\StudentAssignmentForm.js'
+import AssignsubPage from './components/pages/AddAssignment'
 
 import './App.css'
 
