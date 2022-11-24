@@ -4,6 +4,7 @@ import CourseNav from "../navbar/CourseNav";
 
 function Card(props){
     let date = (props.dueDate);
+    console.log(typeof(date),11)
     return(
         <div className="card">
             <div className="card_body">
