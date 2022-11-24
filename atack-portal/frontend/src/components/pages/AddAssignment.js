@@ -91,7 +91,7 @@ export default function AddAssignment() {
                         Start Date
                         <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
                 </div>
-                <div class="input-group date" id="datepicker">npm
+                <div class="input-group date" id="datepicker">
                     {/* <input type="text" class="form-control" id="date"/> */}
                     {/* <span class="input-group-append">
                     <span class="input-group-text bg-light d-block">
