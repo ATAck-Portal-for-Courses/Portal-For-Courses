@@ -8,8 +8,8 @@ const assignmentSchema = new mongoose.Schema({
     startDate:Date,
     dueDate:Date,
     file: {
-        type:Buffer,
-        contentType:String
+        name:String,
+        path:String
     }
     }
     

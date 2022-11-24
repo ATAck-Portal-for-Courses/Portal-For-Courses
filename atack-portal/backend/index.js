@@ -7,10 +7,13 @@ const multer = require('multer')
 // const storage = multer.
 const upload = multer({dest:'assignments/'})
 
+const fs = require('fs');
+
 const Student = require('./db/Student');
 const Teacher = require('./db/Teacher');
 const Course = require('./db/Course');
 const Assignment = require('./db/Assignment');
+const path = require('path');
 
 
 const app = express();
@@ -159,25 +162,47 @@ app.post('/addAssignment', upload.single('file'), async (req, resp)=>{
     // console.warn("HIi")
     // let fileData = req.file.buffer
     // let fileType = req.file.fileType;
-    // let courseCode = req.body.courseCode;
-    // let assignmentName = req.body.assignmentName;
-    // let description = req.body.description;
-    // let startDate = req.body.startDate;
-    // let dueDate = req.body.dueDate;
-    console.log(req.file)
+    let courseCode = req.body.courseCode;
+    let assignmentName = req.body.assignmentName;
+    let description = req.body.description;
+    let startDate = req.body.startDate;
+    let dueDate = req.body.dueDate;
+    let name = req.file.originalname;
+    let path = req.file.path;
+
+    let file = {name:name}
+
+    let payload = {courseCode:courseCode, assignmentName:assignmentName}
+    // console.log(payload)
 
 
     
-    // const auth = await Assignment.findOne(req.body);
+    const auth = await Assignment.findOne(payload);
+    console.log(auth)
 
-    // if(auth) resp.send(false);
-    // else{
-    //     let assignment = new Assignment(req.body);
-    //     let result = await assignment.save();
-    //     result = result.toObject();
-    //     resp.send(result);
-    // }
-    resp.send(false)
+    if(auth){
+        // let path = req.file.path;
+        let loc = __dirname +"\\" + path;
+        try{
+            fs.unlinkSync(loc)
+        } catch(err)
+        {
+            console.error(err)
+        }
+        
+        resp.send(false);
+    }
+    else{
+        file = {name:name, path:path}
+        payload = {courseCode:courseCode, assignmentName:assignmentName,description:description,
+                     startDate:startDate, dueDate:dueDate, file:file}
+            console.log(payload)
+        let assignment = new Assignment(payload);
+        let result = await assignment.save();
+        result = result.toObject();
+        resp.send(result);
+    }
+    // resp.send(false)
 })
 
 
