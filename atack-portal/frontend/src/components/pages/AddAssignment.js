@@ -30,16 +30,16 @@ export default function AddAssignment() {
                     </span>
                     </span> */}
                         Start Date
-                        <DatePicker selected={startDate} onChange={(date:Date) => setStartDate(date)} />
+                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
                 </div>
-                <div class="input-group date" id="datepicker">
+                <div class="input-group date" id="datepicker">npm
                     {/* <input type="text" class="form-control" id="date"/> */}
                     {/* <span class="input-group-append">
                     <span class="input-group-text bg-light d-block">
                     </span>
                     </span> */}
                         Due Date
-                        <DatePicker selected={endDate} onChange={(date:Date) => setEndDate(date)} />
+                        <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
                 </div>
             </div>
           <hr />
