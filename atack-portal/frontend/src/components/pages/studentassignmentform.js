@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 // import CourseNav from "../navbar/CourseNav";
 
+
 const AssignsubPage = ()=>{
     
     let assignmentid = window.location.pathname;
@@ -36,13 +37,19 @@ const AssignsubPage = ()=>{
     
     return(
         <div class="Submission">
-            <h1>Submit Assignment</h1>
+            <h1 class="">Submit Assignment</h1>
           <form class="Submission_form">
             {/* <CourseNav /> */}
             <p>Assignment: {assignment.assignmentName}</p>
             <p>Description:{assignment.description}</p>
             <p>Start Date: {assignment.startDate}</p>
             <p>Due Date: {assignment.dueDate}</p>
+
+
+            <div class="form-group mt-3">
+            <label class="mr-2">Upload Assignment:</label><br/>
+            <input type="file" name="file" multiple onChange={(e)=>setFile(e.target.files[0])} />
+            </div>
 
             <button type="button" class="btn btn-primary">Submit</button>
           </form>
