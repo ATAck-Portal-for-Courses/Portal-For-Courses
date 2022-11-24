@@ -11,8 +11,8 @@ export default function AddAssignment() {
 
     const [assignmentName, setAssignmentName] = useState("");
     const [description, setDescription] = useState("");
-    const [startDate, setStartDate] = useState();
-    const [dueDate, setDueDate] = useState();
+    const [startDate, setStartDate] = useState("");
+    const [dueDate, setDueDate] = useState("");
     const [file, setFile] = useState('');
 
     const collectData = async () => {
@@ -89,7 +89,7 @@ export default function AddAssignment() {
                     </span>
                     </span> */}
                         Start Date
-                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date.toDateString())} />
+                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
                 </div>
                 <div class="input-group date" id="datepicker">
                     {/* <input type="text" class="form-control" id="date"/> */}
@@ -98,7 +98,7 @@ export default function AddAssignment() {
                     </span>
                     </span> */}
                         Due Date
-                        <DatePicker selected={dueDate} onChange={(date) => setDueDate(date.toDateString())} />
+                        <DatePicker selected={dueDate} onChange={(date) => setDueDate(date)} />
                 </div>
             </div>
           <hr />
