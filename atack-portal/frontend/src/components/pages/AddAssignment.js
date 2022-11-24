@@ -104,7 +104,7 @@ export default function AddAssignment() {
           <hr />
           <div class="form-group mt-3">
             <label class="mr-2">Upload Assignment:</label><br/>
-            <input type="file" name="file" onChange={(e)=>setFile(e.target.files[0])} />
+            <input type="file" name="file" multiple onChange={(e)=>setFile(e.target.files[0])} />
           </div>
           <hr />
           <button type="button" class="btn btn-primary" onClick={collectData}>Submit</button>
