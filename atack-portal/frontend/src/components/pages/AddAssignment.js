@@ -11,8 +11,8 @@ export default function AddAssignment() {
 
     const [assignmentName, setAssignmentName] = useState("");
     const [description, setDescription] = useState("");
-    const [startDate, setStartDate] = useState();
-    const [dueDate, setDueDate] = useState();
+    const [startDate, setStartDate] = useState("");
+    const [dueDate, setDueDate] = useState("");
     const [file, setFile] = useState('');
 
     const collectData = async () => {

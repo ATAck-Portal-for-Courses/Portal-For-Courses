@@ -14,7 +14,7 @@ import Stuform from './components/pages/studentform'
 import CoursePage from './components/pages/CoursePage'
 import CourseCreate from './components/pages/CourseCreate'
 import AddAssignment from './components/pages/AddAssignment'
-import AssignsubPage from './components/pages/StudentAssignmentForm.js'
+import AssignmentPage from './components/pages/studentassignmentform'
 
 import './App.css'
 
@@ -25,19 +25,21 @@ export default function App() {
         <Router>
             <div>
                 <Routes>
-                    <Route exact path="/" element={ <LandingPage /> } />
-                    <Route exact path="/login" element={ <LogInPage />  } />
-                    <Route exact path="/register" element={ <SignUpPage /> } />
-                    <Route exact path="/forget-password" element={ <ForgetPasswordPage /> } />
-                    <Route exact path="/home" element={ <HomePage /> } />
-                    <Route exact path="/admin" element={ <AdminHome /> } />
-                    <Route exact path="/student" element={ <StudentHome /> }/>
-                    <Route exact path="/:courseId" element={ <CoursePage /> }/>
-                    <Route exact path="/stu-form" element={ <Stuform />}/>
-                    <Route exact path="/course-create" element={ <CourseCreate/> } />
-                    <Route exact path="/add-assignment" element={ <AddAssignment/> } />
-                    <Route exact path="/assignmrntpage" element={<AssignsubPage/>} />
-                    <Route exact path="/AssignsubPage" element={<AssignsubPage/>} />
+                    <Route  path="/" element={ <LandingPage /> } />
+                    <Route  path="/login" element={ <LogInPage />  } />
+                    <Route  path="/register" element={ <SignUpPage /> } />
+                    <Route  path="/forget-password" element={ <ForgetPasswordPage /> } />
+                    <Route path="/home" element={ <HomePage /> } />
+                    <Route  path="/admin" element={ <AdminHome /> } />
+                    <Route  path="/student" element={ <StudentHome /> }/>
+                        {/* <Route path=":assignmentId" element={<AssignmentPage/>} /> */}
+                
+                    <Route  path="/stu-form" element={ <Stuform />}/>
+                    <Route  path="/course-create" element={ <CourseCreate/> } />
+                    <Route  path="/add-assignment" element={ <AddAssignment/> } />
+                    <Route path="/:courseId" element={ <CoursePage /> } />
+                    <Route  path=":courseId/:assignmentId" element={<AssignmentPage/>} />
+                    <Route  path='/admin/hey' element={<h1>HEY!!!!!</h1>} />
                 </Routes>
             </div>
         </Router>

@@ -5,7 +5,24 @@ require('./db/config');
 const multer = require('multer')
 // var storage = multer.memoryStorage();
 // const storage = multer.
-const upload = multer({dest:'assignments/'})
+// const storage = multer.diskStorage({
+    
+//     filename: function (req, file, callback) {
+//         callback(null, file.originalname);
+//     }
+// })
+const storage = multer.diskStorage({
+destination: (req, file, cb) => {
+    cb(null, 'assignments')
+  },
+  filename: (req, file, cb) => {
+    cb(null, file.originalname)
+  }
+})
+
+
+
+const upload = multer({storage:storage})
 
 const fs = require('fs');
 
@@ -14,6 +31,7 @@ const Teacher = require('./db/Teacher');
 const Course = require('./db/Course');
 const Assignment = require('./db/Assignment');
 const path = require('path');
+// const { diskStorage } = require('multer');
 
 
 const app = express();
@@ -111,7 +129,11 @@ app.get('/getCourseById', async (req, resp) => {
     const id = req.query._id;
     let course = await Course.findOne({ _id: id });
 
-    if (course != false) resp.send(course);
+    if (course !== "false")
+    {
+        // course = await course.toObject();
+        resp.send(course)
+    }
     else resp.send(false);
 })
 
@@ -212,6 +234,7 @@ app.post('/addAssignment', upload.single('file'), async (req, resp)=>{
     }
     // resp.send(false)
 })
+
 
 
 app.listen(7000);

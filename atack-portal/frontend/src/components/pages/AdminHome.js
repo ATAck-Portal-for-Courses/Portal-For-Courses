@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import AdminNav from '../navbar/AdminNav';
 import HomePage from './HomePage'
+import { Link } from 'react-router-dom';
 
 function Card(props){
     return(
@@ -13,7 +14,7 @@ function Card(props){
                 <p className="card_description">
                     {props.courseCode}
                 </p>
-                <a href={`/${props._id}`}><button className="card_btn" >View Course</button> </a>
+                <Link to={`/${props._id}`}><button className="card_btn" >View Course</button> </Link>
             </div>
         </div>
     )
