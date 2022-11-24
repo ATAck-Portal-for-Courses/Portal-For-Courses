@@ -56,25 +56,25 @@ const CoursePage = ()=>{
         getCourseDetails();
     },[])
     
-
-        const getAssignments = async ()=>{
-            let req2 = 'http://localhost:7000/getAssignments?courseCode=' + course.courseCode;
-
-            let result2 = await fetch(req2);
-            result2 = await result2.json();
-            console.warn(req2);
-            
-            console.log(result2);
-            if(result2!==false)
-            {
-                setAssignments(result2);
-            }
-            else return false;
-
-
+    
+    const getAssignments = async ()=>{
+        let req2 = 'http://localhost:7000/getAssignments?courseCode=' + course.courseCode;
+        
+        let result2 = await fetch(req2);
+        result2 = await result2.json();
+        console.warn(req2);
+        
+        console.log(result2);
+        if(result2!==false)
+        {
+            setAssignments(result2);
         }
-        // console.warn(courseId);
-        getAssignments();
+        else return false;
+        
+        
+    }
+    // console.warn(courseId);
+    getAssignments();
     
 
     const renderCards =  assignments.map((assignment, index)=>{
