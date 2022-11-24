@@ -111,7 +111,11 @@ app.get('/getCourseById', async (req, resp) => {
     const id = req.query._id;
     let course = await Course.findOne({ _id: id });
 
-    if (course != false) resp.send(course);
+    if (course != false)
+    {
+        course = await course.toObject();
+        resp.send(course)
+    }
     else resp.send(false);
 })
 

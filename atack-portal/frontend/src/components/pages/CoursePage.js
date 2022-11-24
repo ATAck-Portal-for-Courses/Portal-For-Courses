@@ -4,7 +4,7 @@ import CourseNav from "../navbar/CourseNav";
 
 function Card(props){
     let date = (props.dueDate);
-    console.log(typeof(date),11)
+    // console.log(typeof(date),11)
     return(
         <div className="card">
             <div className="card_body">
@@ -38,8 +38,9 @@ const CoursePage = ()=>{
             let req = 'http://localhost:7000/getCourseById?_id=' + courseId;
             let result = await fetch(req);
             result = await result.json();
+            console.log(typeof(result),1)
 
-            console.warn("hey");
+            // console.warn("hey");
             
             if(result!=false)
             {
@@ -64,9 +65,9 @@ const CoursePage = ()=>{
         
         let result2 = await fetch(req2);
         result2 = await result2.json();
-        console.warn(req2);
+        // console.warn(req2);
         
-        console.log(result2);
+        // console.log(result2);
         if(result2!==false)
         {
             setAssignments(result2);
@@ -80,8 +81,8 @@ const CoursePage = ()=>{
     
 
     const renderCards =  assignments.map((assignment, index)=>{
-
-        console.log(assignment);
+        // console.log(typeof(assignment.dueDate))
+        // console.log(assignment);
         // console.warn(course.body);
         // console.log("===============")
         return(

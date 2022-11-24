@@ -5,8 +5,8 @@ const assignmentSchema = new mongoose.Schema({
     courseCode:String,
     assignmentName:String,
     description:String,
-    startDate:Date,
-    dueDate:Date,
+    startDate:String,
+    dueDate:String,
     file: {
         name:String,
         path:String

@@ -89,7 +89,7 @@ export default function AddAssignment() {
                     </span>
                     </span> */}
                         Start Date
-                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
+                        <DatePicker selected={startDate} onChange={(date) => setStartDate(date.toDateString())} />
                 </div>
                 <div class="input-group date" id="datepicker">
                     {/* <input type="text" class="form-control" id="date"/> */}
@@ -98,7 +98,7 @@ export default function AddAssignment() {
                     </span>
                     </span> */}
                         Due Date
-                        <DatePicker selected={dueDate} onChange={(date) => setDueDate(date)} />
+                        <DatePicker selected={dueDate} onChange={(date) => setDueDate(date.toDateString())} />
                 </div>
             </div>
           <hr />
