@@ -3,6 +3,7 @@ import CourseNav from "../navbar/CourseNav";
 
 
 function Card(props){
+    let date = (props.dueDate);
     return(
         <div className="card">
             <div className="card_body">
@@ -11,7 +12,7 @@ function Card(props){
                 <h2 className="card_title">{props.assignmentName}</h2>
                 <p className="card_description">
                     <b>Due Date:  </b> 
-                    {props.dueDate}
+                    {date}
                 </p>
                 <button className="card_btn" >Download Assignment</button> 
                 
