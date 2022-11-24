@@ -35,16 +35,22 @@ const AssignsubPage = ()=>{
     },[])
     
     return(
-        <div>
-            <CourseNav />
-            <h1>Assignment</h1>
-
+        <div class="Submission">
+            <h1>Submit Assignment</h1>
+          <form class="Submission_form">
+            {/* <CourseNav /> */}
             <p>Assignment: {assignment.assignmentName}</p>
             <p>Description:{assignment.description}</p>
             <p>Start Date: {assignment.startDate}</p>
-            <p>DUe Date: {assignment.dueDate}</p>
+            <p>Due Date: {assignment.dueDate}</p>
+
+            <button type="button" class="btn btn-primary">Submit</button>
+          </form>
+          
+            
+            
         </div>
     )
 }
 
-export default AssignmentPage;
+export default AssignsubPage;

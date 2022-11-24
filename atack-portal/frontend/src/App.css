@@ -213,3 +213,18 @@ form span {
 
 }
 
+.Submission {
+    padding-top: 10rem;
+    justify-content: center;
+    align-items: center;
+    margin-left: 35%;
+}
+
+.Submission_form {
+    display: inline-block;
+    background: #f3f3f3;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    padding: 2rem;
+    margin: 2rem 0 1rem 0
+}

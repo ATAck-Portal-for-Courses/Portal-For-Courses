@@ -14,7 +14,7 @@ import Stuform from './components/pages/studentform'
 import CoursePage from './components/pages/CoursePage'
 import CourseCreate from './components/pages/CourseCreate'
 import AddAssignment from './components/pages/AddAssignment'
-import AssignsubPage from './components/pages/AddAssignment'
+import AssignsubPage from './components/pages/StudentAssignmentForm.js'
 
 import './App.css'
 
@@ -37,6 +37,7 @@ export default function App() {
                     <Route exact path="/course-create" element={ <CourseCreate/> } />
                     <Route exact path="/add-assignment" element={ <AddAssignment/> } />
                     <Route exact path="/assignmrntpage" element={<AssignsubPage/>} />
+                    <Route exact path="/AssignsubPage" element={<AssignsubPage/>} />
                 </Routes>
             </div>
         </Router>
