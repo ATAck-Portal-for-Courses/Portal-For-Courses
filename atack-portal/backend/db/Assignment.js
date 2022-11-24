@@ -7,7 +7,10 @@ const assignmentSchema = new mongoose.Schema({
     description:String,
     startDate:Date,
     dueDate:Date,
-    file:String
+    file: {
+        type:Buffer,
+        contentType:String
+    }
     }
     
 )

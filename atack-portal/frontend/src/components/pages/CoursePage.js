@@ -24,7 +24,7 @@ const CoursePage = ()=>{
 
             let courseCode = result.courseCode;
             // console.log(result)
-            localStorage.setItem("courseCode", courseCode);
+            localStorage.setItem("course", JSON.stringify(result));
 
             
 

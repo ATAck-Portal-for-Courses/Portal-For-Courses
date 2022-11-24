@@ -13,6 +13,7 @@ export default function AddAssignment() {
     const [description, setDescription] = useState("");
     const [startDate, setStartDate] = useState();
     const [dueDate, setDueDate] = useState();
+    const [file, setFile] = useState('');
 
     const collectData = async () => {
       // let id = window.location.pathname;
@@ -21,22 +22,47 @@ export default function AddAssignment() {
       // let course = await fetch(req);
       // course = await course.json();
 
-      let courseCode = localStorage.getItem("courseCode")
-      console.warn(courseCode);
-      let file="";
 
+
+      // console.log(file)
+
+      let courseCode = JSON.parse(localStorage.getItem("course")).courseCode
+      // console.warn(courseCode);
+
+      let formData = new FormData()
+      formData.append('courseCode', courseCode)
+      formData.append("assignmentName",assignmentName)
+      formData.append("description", description)
+      formData.append("startDate", startDate)
+      formData.append("dueDate", dueDate)
+      formData.append("file", file)
+
+
+      // console.log(formData.get('courseCode'),  55)
+
+      // console.log(JSON.stringify(formData.values()))
+      console.log(typeof(file))
+      const fileString = JSON.stringify(file)
+      console.warn(fileString)
+      // let payload = {}
       let result = await fetch('http://localhost:7000/addAssignment',{
         method:"post",
-        body:JSON.stringify({courseCode, assignmentName, description, startDate,dueDate,file}),
-        headers:{
-          'Content-Type':'application/json'
-        }
+        // body:JSON.stringify({courseCode, assignmentName, description, startDate,dueDate, fileString}),
+        body: formData,
+        // headers:{
+        //   'Content-Type':'application/json'
+        
+        // }
       })
 
       result = await result.json();
+
+      console.log(result)
+
       if(!result) alert("Assignment already created");
       else{
-        navigate('/admin')
+        let id = JSON.parse(localStorage.getItem("course"))._id;
+        navigate(`/${id}`)
       }
 
         
@@ -45,7 +71,7 @@ export default function AddAssignment() {
     <div className="text-center m-5-auto">
         <h3>Add Assignment</h3>
     <form>
-          <div class="form-group">
+          <div className="form-group">
             <label>Title</label>
             <input type="text" name="title" class="form-control" placeholder="Enter title" required="required"
              value={assignmentName} onChange={(e)=> setAssignmentName(e.target.value)} />
@@ -78,7 +104,7 @@ export default function AddAssignment() {
           <hr />
           <div class="form-group mt-3">
             <label class="mr-2">Upload Assignment:</label><br/>
-            <input type="file" name="file" />
+            <input type="file" name="file" onChange={(e)=>setFile(e.target.files[0])} />
           </div>
           <hr />
           <button type="button" class="btn btn-primary" onClick={collectData}>Submit</button>
