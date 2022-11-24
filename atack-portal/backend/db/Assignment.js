@@ -7,7 +7,12 @@ const assignmentSchema = new mongoose.Schema({
     description:String,
     startDate:Date,
     dueDate:Date,
-    file:Buffer
-})
+    file: {
+        type:Buffer,
+        contentType:String
+    }
+    }
+    
+)
 
-module.exports=mongoose.model("assignments",assignmentSchema);
+module.exports = mongoose.model("assignments",assignmentSchema);
