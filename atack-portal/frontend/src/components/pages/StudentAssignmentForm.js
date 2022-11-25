@@ -48,6 +48,11 @@ const AssignmentPage = ()=>{
         getAssignmentDetails();
     },[])
 
+
+    const collectData = async ()=>{
+        
+    }
+
     return(
         <div class="Submission">
             <h1 class="">Submit Assignment</h1>
@@ -63,7 +68,7 @@ const AssignmentPage = ()=>{
             <label class="mr-2">Upload Assignment:</label><br/>
             <input type="file" name="file" multiple onChange={(e)=>setFile(e.target.files[0])} />
             </div>
-            <button type="button" class="btn btn-primary">Submit</button>
+            <button type="button" class="btn btn-primary" onClick={collectData}>Submit</button>
             <p>Resources</p>
             <a href={`http://localhost:7000/${url}`} target="_blank"><button type="button">Download Resources</button></a>
           </form>
