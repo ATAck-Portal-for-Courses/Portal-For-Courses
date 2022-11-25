@@ -353,4 +353,17 @@ app.post('/uploadGrade', async (req, resp) => {
     resp.send(result)
 })
 
+app.get('/getSubmissionForGrade', async (req, resp) => {
+    let studentID = req.query.studentID
+    let assignmentID = req.query.assignmentID
+
+    let submission = await Submission.findOne({studentID: studentID, assignmentID: assignmentID})
+    if(submission!= null)
+    {
+        resp.send(submission)
+    }
+    else resp.send(false)
+})
+
+
 app.listen(7000);

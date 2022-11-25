@@ -14,6 +14,7 @@ const AssignmentPage = ()=>{
     const [assignment,setAssignment] = useState({});
     const [file, setFile]=useState('')
     const [url, setUrl] = useState("")
+    const [submission, setSubmission] = useState({});
     
     useEffect(()=>{
         const getAssignmentDetails= async ()=>{
@@ -51,6 +52,17 @@ const AssignmentPage = ()=>{
         getAssignmentDetails();
     },[])
 
+    const getSubmission = async()=>{
+      let subreq = "http://localhost:7000/getSubmissionForGrade?studentID=" + JSON.parse(localStorage.getItem("student")).username + "&assignmentID="+assignmentId
+      let sub = await fetch(subreq)
+      sub = await sub.json()
+
+      if(sub!=false){
+        setSubmission(sub)
+      }
+      else return false
+    }
+    getSubmission()
 
     const collectData = async ()=>{
         let studentID = JSON.parse(localStorage.getItem("student")).username
@@ -96,6 +108,9 @@ const AssignmentPage = ()=>{
             <p>Resources</p>
             <a href={`http://localhost:7000/${url}`} target="_blank"><button type="button">Download Resources</button></a>
           </form>
+          <h3>Grade:</h3><p>{submission.grade}</p><br/><br/>
+          <h3>Feedback:</h3><p>{submission.feedback}</p>
+
           
             
             
