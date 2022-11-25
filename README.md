@@ -23,6 +23,9 @@
    When the student will click on View Course on the course card the student will land on a page where all the assignments given by the admin will appear. When he will click on Download Assignment he will land on the page having a card showing the assignment title, assignment descriptoon, start date and due date. The student will also be able to download resources by clickling on the button of same. The student will have to submit the assignment in zip file.The student will be able to see his grades and feedback from the admin in the same card when uploaded. 
    
    
+   #### Extra Features
+   forgot password feature added in the login page. We have asked question asking mother's age.
+   
 ## How to Run 
   Cloning the repository
   
