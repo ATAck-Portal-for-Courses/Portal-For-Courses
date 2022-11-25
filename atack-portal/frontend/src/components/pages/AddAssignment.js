@@ -3,33 +3,82 @@ import DatePicker from "react-datepicker";
 import { useState } from 'react';
 
 import "react-datepicker/dist/react-datepicker.css";
-// import { set } from 'mongoose';
+import { useNavigate } from 'react-router-dom';
 
 export default function AddAssignment() {
 
+    const navigate = useNavigate();
+
     const [assignmentName, setAssignmentName] = useState("");
     const [description, setDescription] = useState("");
-    const [file,setFile] = useState();
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
-    const collectData = async () => {
-        let courseCode="123";
+    const [startDate, setStartDate] = useState("");
+    const [dueDate, setDueDate] = useState("");
+    const [file, setFile] = useState('');
 
-        console.log(file);
+    const collectData = async () => {
+      // let id = window.location.pathname;
+      // id = id.substring(1);
+      // let req = 'http://localhost:7000/getCourseById?_id='+id;
+      // let course = await fetch(req);
+      // course = await course.json();
+
+
+
+      // console.log(file)
+
+      let courseCode = JSON.parse(localStorage.getItem("course")).courseCode
+      // console.warn(courseCode);
+
+      let formData = new FormData()
+      formData.append('courseCode', courseCode)
+      formData.append("assignmentName",assignmentName)
+      formData.append("description", description)
+      formData.append("startDate", startDate)
+      formData.append("dueDate", dueDate)
+      formData.append("file", file)
+
+
+      // console.log(formData.get('courseCode'),  55)
+
+      // console.log(JSON.stringify(formData.values()))
+      console.log(typeof(file))
+      const fileString = JSON.stringify(file)
+      console.warn(fileString)
+      // let payload = {}
+      let result = await fetch('http://localhost:7000/addAssignment',{
+        method:"post",
+        // body:JSON.stringify({courseCode, assignmentName, description, startDate,dueDate, fileString}),
+        body: formData,
+        // headers:{
+        //   'Content-Type':'application/json'
+        
+        // }
+      })
+
+      result = await result.json();
+
+      console.log(result)
+
+      if(!result) alert("Assignment already created");
+      else{
+        let id = JSON.parse(localStorage.getItem("course"))._id;
+        navigate(`/${id}`)
+      }
+
         
     }
   return (
     <div className="text-center m-5-auto">
         <h3>Add Assignment</h3>
     <form>
-          <div class="form-group">
+          <div className="form-group">
             <label>Title</label>
-            <input type="text" name="title" class="form-control" placeholder="Enter title" required="required" 
-             value={assignmentName} onChange={(e)=>setAssignmentName(e.target.value)} />
+            <input type="text" name="title" class="form-control" placeholder="Enter title" required="required"
+             value={assignmentName} onChange={(e)=> setAssignmentName(e.target.value)} />
           </div>
           <div class="form-group">
             <label required="required">Description</label>
-            <input type="text" name="description" class="form-control" placeholder="Describe in short" 
+            <input type="text" name="description" class="form-control" placeholder="Describe in short"
              value={description} onChange={(e)=> setDescription(e.target.value)} />
           </div>
             <div class="col-5">
@@ -49,14 +98,13 @@ export default function AddAssignment() {
                     </span>
                     </span> */}
                         Due Date
-                        <DatePicker selected={endDate} onChange={(date) => setEndDate(date)} />
+                        <DatePicker selected={dueDate} onChange={(date) => setDueDate(date)} />
                 </div>
             </div>
           <hr />
           <div class="form-group mt-3">
             <label class="mr-2">Upload Assignment:</label><br/>
-            <input type="file" name="file" 
-             value={file} onChange={(e)=>setFile(e.target.value)}  />
+            <input type="file" name="file" multiple onChange={(e)=>setFile(e.target.files[0])} />
           </div>
           <hr />
           <button type="button" class="btn btn-primary" onClick={collectData}>Submit</button>

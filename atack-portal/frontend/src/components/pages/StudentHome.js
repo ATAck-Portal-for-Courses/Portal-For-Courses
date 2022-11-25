@@ -14,7 +14,7 @@ function Card(props) {
         <p className="card_description">
           {props.courseCode}
         </p>
-        <a href={`/${props._id}`}><button className="card_btn" >View Course</button> </a>
+        <a href={`/student/${props._id}`}><button className="card_btn" >View Course</button> </a>
       </div>
     </div>
   )
