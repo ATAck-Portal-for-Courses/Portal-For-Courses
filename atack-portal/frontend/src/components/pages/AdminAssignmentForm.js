@@ -9,8 +9,8 @@ function Card(props, assignmentID) {
             <div className="card_body">
                 <h2 className="card_title">{props.studentID}</h2>
                 <p className="card_description">
-                    Grade:{props.grade}
-                    Feedback:{props.feedback}
+                    <b>Grade:</b>{props.grade}<br/>
+                    <b>Feedback:</b>{props.feedback}
                 </p>
             </div>
             <Link to={`${props._id}`} ><button className="card_btn" >View Submission</button></Link>
@@ -27,8 +27,10 @@ const AdminAssignmentForm = () => {
             let assignmentID = window.location.pathname;
             assignmentID = assignmentID.substring(1);
             assignmentID = assignmentID.split('/')[2];
-            let req2 = 'http://localhost:7000/getSubmission?assignmentID=' + assignmentID;
-    
+            console.log(assignmentID
+                ,2)
+            let req2 = 'http://localhost:7000/getSubmissions?assignmentID=' + assignmentID;
+                console.log(req2,3)
             let result2 = await fetch(req2);
             result2 = await result2.json();
             // console.warn(req2);

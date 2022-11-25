@@ -16,6 +16,7 @@ import CourseCreate from './components/pages/CourseCreate'
 import AddAssignment from './components/pages/AddAssignment'
 import StudentAssignmentPage from './components/pages/StudentAssignmentForm'
 import AdminAssignmentPage from './components/pages/AdminAssignmentForm'
+import SubmissionPage from './components/pages/AdminSubmissionPage'
 
 import './App.css'
 
@@ -41,6 +42,7 @@ export default function App() {
                     <Route path="/admin/:courseId" element={ <CoursePage /> } />
                     <Route path="/student/:courseId" element={ <CoursePage /> } />
                     <Route  path="/admin/:courseId/:assignmentId" element={<AdminAssignmentPage/>} />
+                    <Route path="/admin/:courseId/:assignmentId/:submissionId" element={<SubmissionPage/>} />
                     <Route  path="/student/:courseId/:assignmentId" element={<StudentAssignmentPage/>} />
                     <Route  path='/admin/hey' element={<h1>HEY!!!!!</h1>} />
                 </Routes>

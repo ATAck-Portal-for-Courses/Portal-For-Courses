@@ -32,7 +32,6 @@ const Course = require('./db/Course');
 const Assignment = require('./db/Assignment');
 const Submission = require('./db/Submission');
 const path = require('path');
-const Submission = require('./db/Submission');
 // const { diskStorage } = require('multer');
 
 require('./db/config')
@@ -246,8 +245,8 @@ app.post('/addAssignment', upload.single('file'), async (req, resp) => {
 })
 
 
-app.get('getSubmissions', async (req, resp) => {
-    const assignmentID = req.body.assignmentID;
+app.get('/getSubmissions', async (req, resp) => {
+    const assignmentID = req.query.assignmentID;
     let submission = await Submission.find({assignmentID:assignmentID})
 
     if(submission.length>0)
@@ -299,5 +298,59 @@ app.post('/addSubmission', upload.single('file'), async (req, resp) => {
     resp.send(result)
 })
 
+app.get('/getSubmissionById', async (req, resp) => {
+    const id = req.query._id;
+    console.log(id)
+    let submission = await Submission.findOne({ _id: id });
+
+    if (submission != null) {
+        // assignment = assignment.toObject()
+        resp.send(submission);
+    }
+    else resp.send(false);
+})
+
+
+app.post('/uploadGrade', async (req, resp) => {
+    // console.log(req.body,1)
+    // console.log(req.file,2)
+    // resp.send(false)
+
+    // let studentID = req.body.studentID
+    // let assignmentID = req.body.assignmentID
+    let id = req.body.submissionId
+    console.log(id)
+    let filter = { _id:id}
+
+    // let file = { name: req.file.originalname, path: req.file.path }
+
+    let update = {grade: req.body.grade, feedback: req.body.feedback }
+
+
+    const auth = await Submission.findOne(filter)
+
+    // if (auth) {
+    //     let loc = __dirname + '\\' + auth.file.path
+    //     try {
+    //         fs.unlinkSync(loc)
+    //     } catch (err) {
+    //         console.error(err)
+    //     }
+
+    //     await Submission.findOneAndRemove(filter)
+    // }
+
+    let result = await Submission.findOneAndUpdate(filter, update, {
+        new: true,
+        upsert: true
+    })
+        // let file = {name:req.file.originalname, path:req.file.path}
+        // payload = {studentID:studentID, assignmentID:assignmentID,
+        //             file:file, grade:req.body.grade, feedback:req.body.feedback}
+        // let submission = new Submission(payload)
+        // let result = await submission.save()
+
+    resp.send(result)
+})
 
 app.listen(7000);

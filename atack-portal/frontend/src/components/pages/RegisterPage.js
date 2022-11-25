@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
@@ -62,6 +62,13 @@ const SignUpPage = ()=> {
         }
     }
 
+    const authStudent = localStorage.getItem("student");
+    const authTeacher =localStorage.getItem("teacher");
+
+    useEffect(()=>{
+        if(authStudent) navigate('/student');
+     else if(authTeacher) navigate('/admin');
+    })
     return (
         <div className="text-center m-5-auto">
             <h2>Join us</h2>

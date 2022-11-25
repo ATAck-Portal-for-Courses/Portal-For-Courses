@@ -28,7 +28,7 @@ const Stuform=()=>{
         }
         else
         {
-            navigate(`/${result._id}`)
+            navigate(`/student/${result._id}`)
         }
     }
 

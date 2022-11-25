@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
 import HomePage from "./HomePage";
-import StudentNav from './StudentNav'
+import StudentNav from '../navbar/StudentNav'
 
 
 function Card(props) {
@@ -22,17 +22,31 @@ function Card(props) {
 
 
 function StudentHome() {
+  const navigate = useNavigate()
+
+  // const authStudent=localStorage.getItem("student");
+//   if(authStudent===null){
+//     navigate('/register');
+//     //alert("Please Register First")
+// }
 
   const [courses, setCourses] = useState([]);
 
-  const uid = JSON.parse(localStorage.getItem("student")).username;
-
-
+  
+  
   useEffect(()=>{
-    const getCourses = async ()=>{
-        let req = 'http://localhost:7000/getCourses?uid=' + uid;
+    const authStudent=localStorage.getItem("student");
+    console.log(authStudent)
 
-        let result = await fetch(req);
+    if(authStudent===null){
+      navigate('/register');
+      //alert("Please Register First")
+    }
+    
+    const getCourses = async ()=>{
+      let req = 'http://localhost:7000/getCourses?uid=' + uid;
+      
+      let result = await fetch(req);
         result = await result.json();
         // result = JSON.stringify(result);
 
@@ -42,18 +56,18 @@ function StudentHome() {
 
         if(result!=false)
         {
-            setCourses(result);
-            // console.warn("hmm")
+          setCourses(result);
+          // console.warn("hmm")
         }
         else {
-            // console.warn("nice")   
-            return false;
+          // console.warn("nice")   
+          return false;
         }
-    }
-
-    getCourses();
-},[])
-
+      }
+      
+      getCourses();
+    },[])
+    const uid = JSON.parse(localStorage.getItem("student")).username;
 
 const renderCards =  courses.map((course, index)=>{
 
