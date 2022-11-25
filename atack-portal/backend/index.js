@@ -298,6 +298,32 @@ app.post('/addSubmission', upload.single('file'), async (req, resp) => {
     resp.send(result)
 })
 
+app.get('/getUserById', async (req, resp)=>{
+    console.log(req.query)
+    let username = req.query.username
+    let securityQuestion = req.query.answer
+    let code = req.query.code
+    if(code==="0"){
+        let result = await Student.findOne({username:username, securityQuestion:securityQuestion}) 
+        if(result!=null)
+        {
+            resp.send(result)
+
+        }
+        else resp.send(false)
+    }
+    else if(code==="1879")
+    {
+        let result = await Teacher.findOne({username:username, securityQuestion:securityQuestion}) 
+        if(result!=null)
+        {
+            resp.send(result)
+
+        }
+        else resp.send(false)
+    }
+    else resp.send(false)
+})
 app.get('/getSubmissionById', async (req, resp) => {
     const id = req.query._id;
     console.log(id)
