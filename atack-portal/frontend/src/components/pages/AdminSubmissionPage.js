@@ -1,5 +1,6 @@
 import React , { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import CourseNav from '../navbar/CourseNav';
 
 const SubmissionPage = ()=>{
 
@@ -63,7 +64,10 @@ const SubmissionPage = ()=>{
     }
 
     return(
-        <div className="wrapper">
+        <div>
+
+        <a href="/admin">Home</a>
+        <div className="text-center">
             <h1>Submission</h1>
             <form>
                 <div className="form-group mt-3">
@@ -75,12 +79,13 @@ const SubmissionPage = ()=>{
             <input type="text" name="feedback" required placeholder='Enter Grade'
                      value={feedback} onChange={(e)=> setFeedback(e.target.value)}/>
                 </div>
-                <button type="button" class="btn btn-primary" onClick={collectData}>Submit</button>
+                <button type="button" class="btn btn-primary" onClick={collectData}>Submit</button><br/><br/>
                 <p>
-                    <b>Download Submission</b>
+                    <b>Submission</b><br/>
+                <a href={`http://localhost:7000/${url}`} target="_blank"><button type="button">Download Submission</button></a>
                 </p>
-                <a href={`http://localhost:7000/${url}`} target="_blank"><button type="button">Download Resources</button></a>
             </form>
+        </div>
         </div>
     )
 }

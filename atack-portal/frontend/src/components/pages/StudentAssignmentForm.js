@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CourseNav from "../navbar/CourseNav";
+import StudentNav from "../navbar/StudentNav";
 
 const AssignmentPage = ()=>{
     
@@ -90,6 +90,9 @@ const AssignmentPage = ()=>{
     }
 
     return(
+      <div>
+        <a href="/admin">Home</a>
+        <StudentNav />
         <div class="Submission">
             <h1 class="">Submit Assignment</h1>
           <form class="Submission_form">
@@ -115,6 +118,7 @@ const AssignmentPage = ()=>{
             
             
         </div>
+      </div>
     )
 }
 
