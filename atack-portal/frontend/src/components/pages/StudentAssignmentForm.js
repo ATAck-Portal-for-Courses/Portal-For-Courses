@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import CourseNav from "../navbar/CourseNav";
 
 const AssignmentPage = ()=>{
@@ -7,6 +8,8 @@ const AssignmentPage = ()=>{
     assignmentId = assignmentId.substring(1);
     assignmentId = assignmentId.split('/')[2];
     console.log(assignmentId, 2)
+
+    let navigate = useNavigate();
     
     const [assignment,setAssignment] = useState({});
     const [file, setFile]=useState('')
@@ -50,7 +53,28 @@ const AssignmentPage = ()=>{
 
 
     const collectData = async ()=>{
-        
+        let studentID = JSON.parse(localStorage.getItem("student")).username
+        let grade = "-1"
+        let feedback = ""
+
+        let formData = new FormData()
+        formData.append('studentID', studentID)
+        formData.append('assignmentID', assignmentId)
+        formData.append('file', file)
+        formData.append('grade', grade)
+        formData.append('feedback', feedback)
+
+        let result2 = await fetch("http://localhost:7000/addSubmission",{
+            method:"post",
+            body:formData,
+        })
+
+        result2 = await result2.json()
+        if(!result2) alert("Assignment already created");
+      else{
+        let id = JSON.parse(localStorage.getItem("course"))._id;
+        navigate(`/student/${id}`)
+      }
     }
 
     return(

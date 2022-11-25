@@ -6,23 +6,23 @@ const multer = require('multer')
 // var storage = multer.memoryStorage();
 // const storage = multer.
 // const storage = multer.diskStorage({
-    
+
 //     filename: function (req, file, callback) {
 //         callback(null, file.originalname);
 //     }
 // })
 const storage = multer.diskStorage({
-destination: (req, file, cb) => {
-    cb(null, 'assignments')
-  },
-  filename: (req, file, cb) => {
-    cb(null, (Date.now().toString()) + "_"+ file.originalname)
-  }
+    destination: (req, file, cb) => {
+        cb(null, 'assignments')
+    },
+    filename: (req, file, cb) => {
+        cb(null, (Date.now().toString()) + "_" + file.originalname)
+    }
 })
 
 
 
-const upload = multer({storage:storage})
+const upload = multer({ storage: storage })
 
 const fs = require('fs');
 
@@ -31,15 +31,18 @@ const Teacher = require('./db/Teacher');
 const Course = require('./db/Course');
 const Assignment = require('./db/Assignment');
 const path = require('path');
+const Submission = require('./db/Submission');
 // const { diskStorage } = require('multer');
+
+require('./db/config')
 
 
 const app = express();
 app.use(cors());
 // app.use(bodyParser.urlencoded({extended:false}));
 // app.use(bodyParser.json())
-app.use(express.json({limit:'20mb'}));
-app.use(express.urlencoded({limit:'20mb',extended:true,parameterLimit:20000}))
+app.use(express.json({ limit: '20mb' }));
+app.use(express.urlencoded({ limit: '20mb', extended: true, parameterLimit: 20000 }))
 app.use('/', express.static('assignments'))
 
 
@@ -130,8 +133,7 @@ app.get('/getCourseById', async (req, resp) => {
     const id = req.query._id;
     let course = await Course.findOne({ _id: id });
 
-    if (course !== "false")
-    {
+    if (course !== "false") {
         // course = await course.toObject();
         resp.send(course)
     }
@@ -146,33 +148,34 @@ app.post('/registerForCourse', async (req, resp) => {
 
 
     const auth1 = await Course.findOne({ courseCode: courseCode, password: password });
-    if (!auth1) resp.send({result:"Enter Correct Password"});
+    if (!auth1) resp.send({ result: "Enter Correct Password" });
     else {
         const auth2 = await Course.findOne({ courseCode: courseCode, uid: uid });
-        if (auth2) resp.send({result:"Already Registered"});
+        if (auth2) resp.send({ result: "Already Registered" });
         else {
             let course = await Course.findOne({ courseCode: courseCode });
             // course = course.toObject();
             let courseName = course.courseName;
 
-            let newEntry = new Course({courseName:courseName, courseCode:courseCode,
-                     password:password, uid:uid});
-            
+            let newEntry = new Course({
+                courseName: courseName, courseCode: courseCode,
+                password: password, uid: uid
+            });
+
             let result = await newEntry.save();
             result = result.toObject();
             resp.send(result);
-        
-    }
+
+        }
     }
 })
 
 
-app.get('/getAssignments', async(req,resp)=>{
+app.get('/getAssignments', async (req, resp) => {
     const courseCode = req.query.courseCode;
-    let assignment = await Assignment.find({courseCode:courseCode});
+    let assignment = await Assignment.find({ courseCode: courseCode });
 
-    if(assignment.length>0)
-    {
+    if (assignment.length > 0) {
         resp.send(assignment);
     }
     else resp.send(false);
@@ -184,16 +187,16 @@ app.get('/getAssignmentById', async (req, resp) => {
     console.log(id)
     let assignment = await Assignment.findOne({ _id: id });
 
-    if (assignment != null){ 
-    // assignment = assignment.toObject()
-    resp.send(assignment);
+    if (assignment != null) {
+        // assignment = assignment.toObject()
+        resp.send(assignment);
     }
     else resp.send(false);
 })
 
 
-app.post('/addAssignment', upload.single('file'), async (req, resp)=>{
-    
+app.post('/addAssignment', upload.single('file'), async (req, resp) => {
+
     // console.warn("HIi")
     // let fileData = req.file.buffer
     // let fileType = req.file.fileType;
@@ -205,39 +208,82 @@ app.post('/addAssignment', upload.single('file'), async (req, resp)=>{
     let name = req.file.originalname;
     let path = req.file.path;
 
-    let file = {name:name}
+    let file = { name: name }
 
-    let payload = {courseCode:courseCode, assignmentName:assignmentName}
+    let payload = { courseCode: courseCode, assignmentName: assignmentName }
     // console.log(payload)
 
 
-    
+
     const auth = await Assignment.findOne(payload);
     console.log(auth)
 
-    if(auth){
+    if (auth) {
         // let path = req.file.path;
-        let loc = __dirname +"\\" + path;
-        try{
+        let loc = __dirname + "\\" + path;
+        try {
             fs.unlinkSync(loc)
-        } catch(err)
-        {
+        } catch (err) {
             console.error(err)
         }
-        
+
         resp.send(false);
     }
-    else{
-        file = {name:name, path:path}
-        payload = {courseCode:courseCode, assignmentName:assignmentName,description:description,
-                     startDate:startDate, dueDate:dueDate, file:file}
-            console.log(payload)
+    else {
+        file = { name: name, path: path }
+        payload = {
+            courseCode: courseCode, assignmentName: assignmentName, description: description,
+            startDate: startDate, dueDate: dueDate, file: file
+        }
+        console.log(payload)
         let assignment = new Assignment(payload);
         let result = await assignment.save();
         result = result.toObject();
         resp.send(result);
     }
     // resp.send(false)
+})
+
+
+app.post('/addSubmission', upload.single('file'), async (req, resp) => {
+    // console.log(req.body,1)
+    // console.log(req.file,2)
+    // resp.send(false)
+
+    let studentID = req.body.studentID
+    let assignmentID = req.body.assignmentID
+
+    let filter = { studentID: studentID, assignmentID: assignmentID }
+
+    let file = { name: req.file.originalname, path: req.file.path }
+
+    let update = { file: file, grade: req.body.grade, feedback: req.body.feedback }
+
+
+    const auth = await Submission.findOne(filter)
+
+    if (auth) {
+        let loc = __dirname + '\\' + auth.file.path
+        try {
+            fs.unlinkSync(loc)
+        } catch (err) {
+            console.error(err)
+        }
+
+        await Submission.findOneAndRemove(filter)
+    }
+
+    // let result = await Submission.findOneAndUpdate(filter, update, {
+    //     new: true,
+    //     upsert: true
+    // })
+        // let file = {name:req.file.originalname, path:req.file.path}
+        payload = {studentID:studentID, assignmentID:assignmentID,
+                    file:file, grade:req.body.grade, feedback:req.body.feedback}
+        let submission = new Submission(payload)
+        let result = await submission.save()
+
+    resp.send(result)
 })
 
 
