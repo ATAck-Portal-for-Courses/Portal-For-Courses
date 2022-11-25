@@ -59,7 +59,7 @@ const AssignmentPage = ()=>{
             </div>
             <button type="button" class="btn btn-primary">Submit</button>
             <p>Resources</p>
-            <a href={`http://localhost:7000/${JSON.parse(localStorage.getItem("file")).name}`} target="_blank"><button type="button">Download Resources</button></a>
+            <a href={`http://localhost:7000/}`} target="_blank"><button type="button">Download Resources</button></a>
           </form>
           
             
