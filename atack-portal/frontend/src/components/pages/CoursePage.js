@@ -17,7 +17,7 @@ function Card(props, courseId) {
                     {date}
                 </p>
             </div>
-            <Link to={`${props._id}`} ><button className="card_btn" >Download Assignment</button></Link>
+            <Link to={`${props._id}`} ><button className="card_btn" >View Assignment</button></Link>
 
         </div>
 

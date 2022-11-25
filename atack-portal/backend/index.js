@@ -30,6 +30,7 @@ const Student = require('./db/Student');
 const Teacher = require('./db/Teacher');
 const Course = require('./db/Course');
 const Assignment = require('./db/Assignment');
+const Submission = require('./db/Submission');
 const path = require('path');
 // const { diskStorage } = require('multer');
 
@@ -235,6 +236,18 @@ app.post('/addAssignment', upload.single('file'), async (req, resp)=>{
     // resp.send(false)
 })
 
+
+app.get('getSubmissions', async (req, resp) => {
+    const assignmentID = req.body.assignmentID;
+    let submission = await Submission.find({assignmentID:assignmentID})
+
+    if(submission.length>0)
+    {
+        resp.send(submission);
+    }
+    else resp.send(false);
+
+})
 
 
 app.listen(7000);
