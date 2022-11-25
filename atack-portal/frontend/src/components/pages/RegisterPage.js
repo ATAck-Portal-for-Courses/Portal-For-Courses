@@ -10,12 +10,13 @@ const SignUpPage = ()=> {
     const [email, setEmail] = useState("");
     const [password, setPass] = useState("");
     const [code, setCode] = useState("");
+    const [securityQuestion, setSecurityQuestion] = useState("");
 
     const navigate = useNavigate();
 
     const collectData = async ()=>{
 
-        console.log(username,email,password,code);
+        console.log(username,email,password,code,securityQuestion);
     
         let c = parseInt(code);
         
@@ -23,7 +24,7 @@ const SignUpPage = ()=> {
         if(c===0){
             let result = await fetch("http://localhost:7000/registerStudent",{
                 method:'post',
-                body:JSON.stringify({username,email,password}),
+                body:JSON.stringify({username,email,password,securityQuestion}),
                 headers:{
                     'Content-Type':'application/json'
                 }
@@ -44,7 +45,7 @@ const SignUpPage = ()=> {
 
             let result = await fetch("http://localhost:7000/registerTeacher",{
                 method:'post',
-                body:JSON.stringify({username,email,password,crsId}),
+                body:JSON.stringify({username,email,password,crsId,securityQuestion}),
                 headers:{
                     'Content-Type':'application/json'
                 }
@@ -86,6 +87,11 @@ const SignUpPage = ()=> {
                     <label>Admin Code (0 for student)</label><br/>
                     <input type="text" name="code" required 
                      value={code} onChange={(e)=> setCode(e.target.value)} />
+                </p>
+                <p className='text-left'>
+                    <label>(Security Question)<br />What is your mother's name?</label><br/>
+                    <input type="text" name="securityQuestion" required 
+                     value={securityQuestion} onChange={(e)=> setSecurityQuestion(e.target.value)} />
                 </p>
                 <p>
                     <input type="checkbox" id="checkbox" required /> <span>I agree all statements in <a href="https://google.com" target="_blank" rel="noopener noreferrer">terms of service</a></span>.
