@@ -14,7 +14,7 @@ function Card(props){
                 <p className="card_description">
                     {props.courseCode}
                 </p>
-                <Link to={`/${props._id}`}><button className="card_btn" >View Course</button> </Link>
+                <Link to={`/admin/${props._id}`}><button className="card_btn" >View Course</button> </Link>
             </div>
         </div>
     )

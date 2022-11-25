@@ -6,7 +6,7 @@ const AssignmentPage = ()=>{
     let assignmentId = window.location.pathname;
     assignmentId = assignmentId.substring(1);
     assignmentId = assignmentId.split('/')[1];
-    // console.log(assignmentId, 2)
+    console.log(assignmentId, 2)
     
     const [assignment,setAssignment] = useState('');
     const [file, setFile]=useState('')

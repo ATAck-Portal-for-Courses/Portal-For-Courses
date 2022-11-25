@@ -36,6 +36,7 @@ const CoursePage = () => {
         const getCourseDetails = async () => {
             let courseId = window.location.pathname;
             courseId = courseId.substring(1);
+            courseId = courseId.split('/')[1];
 
             let req = 'http://localhost:7000/getCourseById?_id=' + courseId;
             let result = await fetch(req);

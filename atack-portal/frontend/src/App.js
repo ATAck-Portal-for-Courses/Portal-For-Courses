@@ -10,11 +10,12 @@ import AdminHome from './components/pages/AdminHome'
 import StudentHome from './components/pages/StudentHome'
 import Footer from './components/pages/Footer'
 import SignUpPage from './components/pages/RegisterPage'
-import Stuform from './components/pages/studentform'
+import Stuform from './components/pages/StudentForm'
 import CoursePage from './components/pages/CoursePage'
 import CourseCreate from './components/pages/CourseCreate'
 import AddAssignment from './components/pages/AddAssignment'
-import AssignmentPage from './components/pages/studentassignmentform'
+import StudentAssignmentPage from './components/pages/StudentAssignmentForm'
+import AdminAssignmentPage from './components/pages/AdminAssignmentForm'
 
 import './App.css'
 
@@ -37,8 +38,10 @@ export default function App() {
                     <Route  path="/stu-form" element={ <Stuform />}/>
                     <Route  path="/course-create" element={ <CourseCreate/> } />
                     <Route  path="/add-assignment" element={ <AddAssignment/> } />
-                    <Route path="/:courseId" element={ <CoursePage /> } />
-                    <Route  path=":courseId/:assignmentId" element={<AssignmentPage/>} />
+                    <Route path="/admin/:courseId" element={ <CoursePage /> } />
+                    <Route path="/student/:courseId" element={ <CoursePage /> } />
+                    <Route  path="/admin/:courseId/:assignmentId" element={<AdminAssignmentPage/>} />
+                    <Route  path="/student/:courseId/:assignmentId" element={<StudentAssignmentPage/>} />
                     <Route  path='/admin/hey' element={<h1>HEY!!!!!</h1>} />
                 </Routes>
             </div>
