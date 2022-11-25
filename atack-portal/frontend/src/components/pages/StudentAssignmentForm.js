@@ -5,11 +5,12 @@ const AssignmentPage = ()=>{
     
     let assignmentId = window.location.pathname;
     assignmentId = assignmentId.substring(1);
-    assignmentId = assignmentId.split('/')[1];
+    assignmentId = assignmentId.split('/')[2];
     console.log(assignmentId, 2)
     
     const [assignment,setAssignment] = useState({});
     const [file, setFile]=useState('')
+    const [url, setUrl] = useState("")
     
     useEffect(()=>{
         const getAssignmentDetails= async ()=>{
@@ -24,7 +25,7 @@ const AssignmentPage = ()=>{
             if(result!=false)
             {
                 setAssignment(result);
-                console.log(assignment,1)
+                console.log(result,1)
             }
             else return false;
             
@@ -32,8 +33,13 @@ const AssignmentPage = ()=>{
             // console.log(result)
             // console.log(assignment.file.path)
             localStorage.setItem("assignment", JSON.stringify(result));
-            console.log(assignment.file, 4)
-            localStorage.setItem("file",JSON.stringify(assignment.file))
+            // console.log(assignment.file, 4)
+            localStorage.setItem("file",JSON.stringify(result.file))
+            console.log(result.file.path,2)
+            console.log(result.file.name,4)
+            console.log((result.file.path).split('\\')[1],5)
+
+            setUrl((result.file.path).split('\\')[1])
             
             
             
@@ -59,7 +65,7 @@ const AssignmentPage = ()=>{
             </div>
             <button type="button" class="btn btn-primary">Submit</button>
             <p>Resources</p>
-            <a href={`http://localhost:7000/}`} target="_blank"><button type="button">Download Resources</button></a>
+            <a href={`http://localhost:7000/${url}`} target="_blank"><button type="button">Download Resources</button></a>
           </form>
           
             

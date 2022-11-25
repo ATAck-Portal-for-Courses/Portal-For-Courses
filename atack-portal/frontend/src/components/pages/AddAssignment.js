@@ -62,7 +62,7 @@ export default function AddAssignment() {
       if(!result) alert("Assignment already created");
       else{
         let id = JSON.parse(localStorage.getItem("course"))._id;
-        navigate(`/${id}`)
+        navigate(`/admin/${id}`)
       }
 
         

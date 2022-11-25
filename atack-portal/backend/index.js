@@ -181,10 +181,11 @@ app.get('/getAssignments', async(req,resp)=>{
 
 app.get('/getAssignmentById', async (req, resp) => {
     const id = req.query._id;
+    console.log(id)
     let assignment = await Assignment.findOne({ _id: id });
 
-    if (assignment != false){ 
-    assignment = assignment.toObject()
+    if (assignment != null){ 
+    // assignment = assignment.toObject()
     resp.send(assignment);
     }
     else resp.send(false);
